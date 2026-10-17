@@ -99,7 +99,7 @@ def page(path, title, description, body, current=None, extra_head=""):
 <main>
 {body.replace("{root}", root)}
 </main>
-<footer class="site-foot"><div class="wrap"><span>&copy; 2026 Rex Walrond</span><span><a href="https://www.linkedin.com/in/theodore-rex-walrond/">LinkedIn</a> &middot; <a href="https://rexwalrond.github.io/RexWalrond/">Field notes</a> &middot; <a href="https://rexwalrond.weebly.com/">Research &amp; community</a> &middot; <a href="https://theodorewalrond.com/">theodorewalrond.com</a></span></div></footer>
+<footer class="site-foot"><div class="wrap"><span>&copy; 2026 Rex Walrond</span><span><a href="https://www.linkedin.com/in/theodore-rex-walrond/">LinkedIn</a> &middot; <a href="{root}university-of-florida/">At UF</a> &middot; <a href="https://rexwalrond.github.io/RexWalrond/">Field notes</a> &middot; <a href="https://rexwalrond.weebly.com/">Research &amp; community</a> &middot; <a href="https://theodorewalrond.com/">theodorewalrond.com</a></span></div></footer>
 </body>
 </html>
 """
@@ -255,7 +255,7 @@ def build():
   <div class="wrap two-col">
     <div><div class="mono">Hi, I'm Rex</div><h2 style="margin-top:12px;font-size:clamp(30px,3.6vw,44px)">Curious about how the brain works, how healthcare gets built, and what's over the next pass.</h2></div>
     <div>
-      <p>I'm <strong>Theodore Rex Walrond</strong>, though almost everyone calls me Rex. I studied behavioral and cognitive neuroscience at the <strong>University of Florida</strong>, where I got hooked on research: working through hundreds of studies on how brain bleeds relate to Alzheimer's disease, and tracking COVID-19 drug candidates during the pandemic.</p>
+      <p>I'm <strong>Theodore Rex Walrond</strong>, though almost everyone calls me Rex. I studied behavioral and cognitive neuroscience at the <strong><a href="{{root}}university-of-florida/">University of Florida</a></strong>, where I got hooked on research: working through hundreds of studies on how brain bleeds relate to Alzheimer's disease, and tracking COVID-19 drug candidates during the pandemic.</p>
       <p>From there I moved toward the business side of healthcare and completed graduate coursework in finance at the <strong>University of Notre Dame</strong>. Today I'm focused on building an early-stage venture in consumer health.</p>
       <p>Home base is St. Petersburg, on Tampa Bay. When I'm not working, I'm usually planning the next trip, out on the water, or over-analyzing my sleep data.</p>
     </div>
@@ -330,7 +330,7 @@ def build():
   <div class="prose">
     <figure><img src="{root}wp-content/uploads/2026/07/Headshot.jpg" alt="Rex Walrond headshot" style="max-width:320px;border-radius:18px" width="1200" height="1500"></figure>
     <h2>Education</h2>
-    <p><strong>University of Florida</strong>: B.S. in Psychology, Behavioral and Cognitive Neuroscience, cum laude (2025)<br><strong>University of Notre Dame</strong>: completed graduate coursework in finance</p>
+    <p><strong><a href="{root}university-of-florida/">University of Florida</a></strong>: B.S. in Psychology, Behavioral and Cognitive Neuroscience, cum laude (2025)<br><strong>University of Notre Dame</strong>: completed graduate coursework in finance</p>
     <h2>Research background</h2>
     <h3>McKnight Brain Institute, University of Florida</h3>
     <p class="muted">Neuroscience Researcher, 2022&#8211;2023</p>
@@ -356,6 +356,31 @@ def build():
     page("about/", "About Rex Walrond | University of Florida Neuroscience Graduate",
          "About Rex Walrond: St. Petersburg, Florida-based University of Florida neuroscience graduate, former McKnight Brain Institute and Romark researcher, APDA volunteer and divemaster.",
          about, "About", jsonld(PERSON))
+
+    # ---------------- University of Florida (targets "rex walrond uf", where every result used to be negative)
+    uf = """
+<div class="wrap narrow">
+  <div class="page-head"><div class="mono">University of Florida</div><h1>Rex Walrond at the University of Florida</h1>
+  <p>Rex Walrond (Theodore Rex Walrond) is a University of Florida graduate. At UF he studied behavioral and cognitive neuroscience, worked on research at the McKnight Brain Institute and from 2020 to 2023 helped teach scuba for the university's Scientific Diving Program.</p></div>
+  <div class="prose">
+    <p><strong>Degree:</strong> B.S. in Psychology, Behavioral and Cognitive Neuroscience, cum laude<br><strong>Research:</strong> McKnight Brain Institute, 2022&#8211;2023<br><strong>Diving:</strong> UF Scientific Diving Program, divemaster and teaching assistant, 2020&#8211;2023<br><strong>Today:</strong> St. Petersburg, Florida</p>
+    <h2>The degree</h2>
+    <p>Rex Walrond earned a Bachelor of Science in Psychology from UF with a concentration in behavioral and cognitive neuroscience, graduating cum laude. The concentration sits where psychology meets biology: how the brain produces behavior, memory, attention and emotion, and how injury or disease changes them. It was the coursework that got him interested in research.</p>
+    <h2>Research at the McKnight Brain Institute</h2>
+    <p>From 2022 to 2023 Walrond worked on a research project at UF's McKnight Brain Institute, which focuses on brain health and cognitive aging. The project asked whether a subarachnoid hemorrhage, bleeding into the space around the brain, can leave a person more vulnerable to Alzheimer's disease later in life. He conducted literature reviews and statistical analyses across more than 300 studies, helped build a framework of the variables that appear to link vascular injury to neurodegeneration, and presented the findings to faculty and researchers across three departments.</p>
+    <h2>Teaching scuba with UF Scientific Diving</h2>
+    <p>From 2020 to 2023 he was a divemaster and teaching assistant for the University of Florida's Scientific Diving Program. He helped run courses from Open Water through Master Diver for more than 30 students, covering in-water skills, out-of-water skills and classroom sessions on dive planning, dive physics and physiology. Much of that diving took place in Florida's freshwater springs. He holds SDI certifications through Divemaster.</p>
+    <h2>After UF</h2>
+    <p>After graduating, Walrond completed graduate coursework in finance at the University of Notre Dame and volunteered as an Impact Partner with the American Parkinson Disease Association. He now lives in St. Petersburg, Florida, where he is building an early-stage venture in consumer health.</p>
+    <h2>Further reading</h2>
+    <p><a href="{root}about/">About Rex Walrond</a> &#183; <a href="https://issuu.com/theodorewalrond/docs/the_journey_of_an_aspiring_scientist_from_classro">Research experience in neuroscience and drug development</a> &#183; <a href="https://issuu.com/rexwalrond/docs/the_journey_of_an_aspiring_scientist_navigating_t">Resume</a> &#183; <a href="https://www.linkedin.com/in/theodore-rex-walrond/">LinkedIn</a></p>
+  </div>
+</div>
+<div style="height:72px"></div>
+"""
+    page("university-of-florida/", "Rex Walrond at UF | Neuroscience, Research &amp; Scientific Diving",
+         "Rex Walrond's years at the University of Florida (UF): a cum laude neuroscience degree, research at the McKnight Brain Institute and teaching scuba with UF Scientific Diving.",
+         uf, None, jsonld(PERSON))
 
     # ---------------- Portfolio
     portfolio = """
@@ -442,11 +467,12 @@ def build():
         redirect(old, new)
 
     # ---------------- robots, sitemap, CNAME
-    urls = ["", "about/", "blog/", "portfolio/", "resources/", "contact/"] + [p["slug"] for p in POSTS]
+    urls = ["", "about/", "university-of-florida/", "blog/", "portfolio/", "resources/", "contact/"] + [p["slug"] for p in POSTS]
+    updated = {"": "2026-10-17", "about/": "2026-10-17", "university-of-florida/": "2026-10-17", "resources/": "2026-10-17"}
     with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
         for u in urls:
-            f.write(f"  <url><loc>{BASE}/{u}</loc><lastmod>2026-10-15</lastmod></url>\n")
+            f.write(f"  <url><loc>{BASE}/{u}</loc><lastmod>{updated.get(u, '2026-10-15')}</lastmod></url>\n")
         f.write("</urlset>\n")
     with open(os.path.join(OUT, "robots.txt"), "w") as f:
         f.write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n" if LIVE else "User-agent: *\nDisallow: /\n")
