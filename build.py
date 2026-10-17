@@ -48,7 +48,9 @@ PERSON = {
     "alternateName": ["Theodore Rex Walrond", "Theodore Walrond"],
     "url": BASE + "/",
     "image": BASE + "/images/rex-walrond-headshot.jpg",
-    "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of Florida"},
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of Florida", "alternateName": "UF", "sameAs": "https://www.ufl.edu/"},
+    "homeLocation": {"@type": "Place", "name": "St. Petersburg, Florida",
+                     "address": {"@type": "PostalAddress", "addressLocality": "St. Petersburg", "addressRegion": "FL", "addressCountry": "US"}},
     "knowsAbout": ["Behavioral neuroscience", "Cognitive neuroscience", "Healthcare", "Finance", "Scuba diving", "Mountaineering"],
     "sameAs": [u for _, _, u in PROFILES],
 }
@@ -218,6 +220,8 @@ def build():
     os.makedirs(OUT)
     shutil.copy(os.path.join(HERE, "src", "style.css"), OUT)
     shutil.copytree(os.path.join(HERE, "src", "images"), os.path.join(OUT, "images"))
+    # Real photos kept at their old WordPress URLs (GPS stripped) so existing image-search entries stay valid.
+    shutil.copytree(os.path.join(HERE, "src", "wp-content"), os.path.join(OUT, "wp-content"))
 
     # ---------------- Home
     cards = "".join(post_card(p, "{root}") for p in POSTS)
@@ -227,7 +231,7 @@ def build():
     <div>
       <div class="mono">Neuroscience &#183; Healthcare &#183; Finance &#183; Higher elevations</div>
       <h1>Rex<br><span>Walrond</span></h1>
-      <p class="lede">Neuroscience grad turned builder, usually happiest somewhere above treeline or below the surface.</p>
+      <p class="lede">Neuroscience grad turned builder in St. Petersburg, Florida, usually happiest somewhere above treeline or below the surface.</p>
       <div class="cta"><a class="btn btn-solid" href="{{root}}about/">More about me &#8594;</a><a class="btn btn-ghost" href="https://rexwalrond.github.io/RexWalrond/trips.html">Field notes</a></div>
     </div>
     <div class="portrait">
@@ -243,7 +247,7 @@ def build():
     <div>
       <p>I'm <strong>Theodore Rex Walrond</strong>, though almost everyone calls me Rex. I studied behavioral and cognitive neuroscience at the <strong>University of Florida</strong>, where I got hooked on research: working through hundreds of studies on how brain bleeds relate to Alzheimer's disease, and tracking COVID-19 drug candidates during the pandemic.</p>
       <p>From there I moved toward the business side of healthcare and completed graduate coursework in finance at the <strong>University of Notre Dame</strong>. Today I'm focused on building an early-stage venture in consumer health.</p>
-      <p>When I'm not working, I'm usually planning the next trip, out on the water, or over-analyzing my sleep data.</p>
+      <p>Home base is St. Petersburg, on Tampa Bay. When I'm not working, I'm usually planning the next trip, out on the water, or over-analyzing my sleep data.</p>
     </div>
   </div>
 </section>
@@ -304,17 +308,17 @@ def build():
   <div class="wrap"><div class="close"><h2>Planning a trip, or just want to say hello?</h2><div class="cta" style="margin-top:0"><a class="btn btn-solid" href="{{root}}contact/">Get in touch</a><a class="btn btn-ghost" href="https://www.linkedin.com/in/theodore-rex-walrond/">LinkedIn</a></div></div></div>
 </section>
 """
-    page("", "Rex Walrond | Neuroscience, Healthcare &amp; Finance",
-         "Rex Walrond is a University of Florida neuroscience graduate with past brain and pharmaceutical research experience, now building a consumer health venture.",
+    page("", "Rex Walrond | UF Neuroscience Graduate, St. Petersburg, Florida",
+         "Rex Walrond is a University of Florida neuroscience graduate in St. Petersburg, Florida, with brain and pharmaceutical research experience, now building a consumer health venture.",
          home, "Home", jsonld(PERSON))
 
     # ---------------- About
     about = """
 <div class="wrap narrow">
   <div class="page-head"><div class="mono">About</div><h1>About Rex Walrond</h1>
-  <p>Theodore Rex Walrond, who goes by Rex, is a University of Florida neuroscience graduate whose work has moved from the research lab toward healthcare and finance. He is currently building an early-stage venture in consumer health.</p></div>
+  <p>Theodore Rex Walrond, who goes by Rex, is a University of Florida neuroscience graduate based in St. Petersburg, Florida, whose work has moved from the research lab toward healthcare and finance. He is currently building an early-stage venture in consumer health.</p></div>
   <div class="prose">
-    <figure><img src="{root}images/rex-walrond-headshot.jpg" alt="Rex Walrond" style="max-width:320px;border-radius:18px" width="960" height="1200"></figure>
+    <figure><img src="{root}wp-content/uploads/2026/07/Headshot.jpg" alt="Rex Walrond headshot" style="max-width:320px;border-radius:18px" width="1200" height="1500"></figure>
     <h2>Education</h2>
     <p><strong>University of Florida</strong>: B.S. in Psychology, Behavioral and Cognitive Neuroscience, cum laude (2025)<br><strong>University of Notre Dame</strong>: completed graduate coursework in finance</p>
     <h2>Research background</h2>
@@ -332,14 +336,15 @@ def build():
     <p class="muted">Divemaster, 2020&#8211;2023</p>
     <p>Rex helped teach scuba courses from Open Water through Master Diver, covering in-water and out-of-water skills and classroom lectures on dive planning, dive physics and physiology, for more than 30 students across the program's certification courses. He holds SDI certifications through Divemaster.</p>
     <h2>Outside of work</h2>
+    <figure><img src="{root}wp-content/uploads/2025/03/rex-walrond-receives-cum-laude-honor-upon-graduation-768x1024.jpg" alt="Rex Walrond below the Half Dome cables in Yosemite National Park" style="max-width:360px;border-radius:18px" width="768" height="1024" loading="lazy"><figcaption>Rex Walrond below the Half Dome cables, Yosemite National Park, June 2021.</figcaption></figure>
     <p>Rex spends as much time as he can at higher elevations or below the surface: mountaineering, backpacking, skiing and diving. He has summited Mount Rainier and covered long stretches of the John Muir Trail, the Teton Crest Trail and Glacier National Park's backcountry. He also plays golf and acoustic guitar, and tracks his training, nutrition and sleep data more closely than strictly necessary. Trip reports, gear notes and an ever-changing ranking of Zach Bryan's discography live on his <a href="https://rexwalrond.github.io/RexWalrond/">personal site</a>.</p>
     <p><a href="https://www.linkedin.com/in/theodore-rex-walrond/">LinkedIn</a> &#183; <a href="{root}contact/">Contact</a></p>
   </div>
 </div>
 <div style="height:72px"></div>
 """
-    page("about/", "About Rex Walrond | Neuroscience, Research &amp; Service",
-         "About Rex Walrond: University of Florida neuroscience graduate, former McKnight Brain Institute and Romark researcher, APDA volunteer and divemaster.",
+    page("about/", "About Rex Walrond | University of Florida Neuroscience Graduate",
+         "About Rex Walrond: St. Petersburg, Florida-based University of Florida neuroscience graduate, former McKnight Brain Institute and Romark researcher, APDA volunteer and divemaster.",
          about, "About", jsonld(PERSON))
 
     # ---------------- Portfolio
