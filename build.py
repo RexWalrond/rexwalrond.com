@@ -57,7 +57,7 @@ PERSON = {
     "name": "Rex Walrond",
     "alternateName": ["Theodore Rex Walrond", "Theodore Walrond"],
     "url": BASE + "/",
-    "image": BASE + "/images/rex-walrond-headshot.jpg",
+    "image": {"@type": "ImageObject", "url": BASE + "/wp-content/uploads/2026/07/Headshot.jpg", "caption": "Rex Walrond", "width": 1200, "height": 1500},
     "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of Florida", "alternateName": "UF", "sameAs": "https://www.ufl.edu/"},
     "homeLocation": {"@type": "Place", "name": "St. Petersburg, Florida",
                      "address": {"@type": "PostalAddress", "addressLocality": "St. Petersburg", "addressRegion": "FL", "addressCountry": "US"}},
@@ -66,7 +66,7 @@ PERSON = {
 }
 
 
-def page(path, title, description, body, current=None, extra_head=""):
+def page(path, title, description, body, current=None, extra_head="", image="/wp-content/uploads/2026/07/Headshot.jpg"):
     depth = path.count("/")
     root = "../" * depth if depth else "./"
     nav = "".join(
@@ -87,7 +87,8 @@ def page(path, title, description, body, current=None, extra_head=""):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{BASE}/images/rex-walrond-headshot.jpg">
+<meta property="og:image" content="{BASE}{image}">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2313202b'/%3E%3Cpath d='M10 48 L26 24 L34 34 L42 20 L54 48 Z' fill='%23d9893b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -272,7 +273,7 @@ def build():
       <div class="cta"><a class="btn btn-solid" href="{{root}}about/">More about me &#8594;</a><a class="btn btn-ghost" href="https://rexwalrond.github.io/RexWalrond/trips.html">Field notes</a></div>
     </div>
     <div class="portrait">
-      <img src="{{root}}images/rex-walrond-headshot.jpg" alt="Rex Walrond" width="960" height="1200">
+      <img src="{{root}}wp-content/uploads/2026/07/Headshot.jpg" alt="Rex Walrond, University of Florida neuroscience graduate" width="1200" height="1500">
       <div class="tag"><span class="dot"></span><div><b>14,411 ft</b><small>Mount Rainier summit</small></div></div>
     </div>
   </div>
@@ -346,7 +347,7 @@ def build():
 </section>
 """
     page("", "Rex Walrond | UF Neuroscience Graduate, St. Petersburg, Florida",
-         "Rex Walrond is a University of Florida neuroscience graduate in St. Petersburg, Florida, with brain and pharmaceutical research experience, now building a consumer health venture.",
+         "Rex Walrond is a University of Florida neuroscience graduate in St. Petersburg, FL, with brain and drug research experience, now starting a consumer health company.",
          home, "Home", jsonld(PERSON))
 
     # ---------------- About
@@ -355,7 +356,7 @@ def build():
   <div class="page-head"><div class="mono">About</div><h1>About Rex Walrond</h1>
   <p>Theodore Rex Walrond, who goes by Rex, is a University of Florida neuroscience graduate based in St. Petersburg, Florida, whose work has moved from the research lab toward healthcare and finance. He is currently building an early-stage venture in consumer health.</p></div>
   <div class="prose">
-    <figure><img src="{root}wp-content/uploads/2026/07/Headshot.jpg" alt="Rex Walrond headshot" style="max-width:320px;border-radius:18px" width="1200" height="1500"></figure>
+    <figure><img src="{root}images/rex-walrond-portrait.jpg" alt="Rex Walrond in a navy blazer and open-collar shirt" style="max-width:320px;border-radius:18px" width="960" height="1200"><figcaption>Rex Walrond, St. Petersburg, Florida.</figcaption></figure>
     <h2>Education</h2>
     <p><strong><a href="{root}university-of-florida/">University of Florida</a></strong>: B.S. in Psychology, Behavioral and Cognitive Neuroscience, cum laude (2025)<br><strong>University of Notre Dame</strong>: completed graduate coursework in finance</p>
     <h2>Research background</h2>
@@ -381,8 +382,8 @@ def build():
 <div style="height:72px"></div>
 """
     page("about/", "About Rex Walrond | University of Florida Neuroscience Graduate",
-         "About Rex Walrond: St. Petersburg, Florida-based University of Florida neuroscience graduate, former McKnight Brain Institute and Romark researcher, APDA volunteer and divemaster.",
-         about, "About", jsonld(PERSON))
+         "About Rex Walrond: St. Petersburg-based UF neuroscience graduate, former McKnight Brain Institute and Romark researcher, APDA volunteer and SDI Divemaster.",
+         about, "About", jsonld(PERSON), image="/images/rex-walrond-portrait.jpg")
 
     # ---------------- University of Florida (targets "rex walrond uf", where every result used to be negative)
     uf = """
@@ -444,7 +445,8 @@ def build():
         html = (f'<div class="wrap narrow"><div class="page-head"><div class="mono">{p["tag"]} &#183; {p["date_text"]}</div><h1>{p["title"]}</h1>'
                 f'<p>By Rex Walrond</p></div><article class="prose">{body}</article>'
                 f'<p style="margin-top:40px"><a href="{{root}}blog/">&#8592; All posts</a></p></div><div style="height:72px"></div>')
-        page(p["slug"], f'{p["title"]} | Rex Walrond', p["summary"].replace('"', "&quot;"), html, "Blog", jsonld(art))
+        page(p["slug"], f'{p["title"]} | Rex Walrond', p["summary"].replace('"', "&quot;"), html, "Blog", jsonld(art),
+             image=("/images/" + p["image"][0]) if p["image"] else "/wp-content/uploads/2026/07/Headshot.jpg")
 
     # ---------------- Resources
     articles = [
@@ -497,9 +499,16 @@ def build():
     urls = ["", "about/", "university-of-florida/", "blog/", "portfolio/", "resources/", "contact/"] + [p["slug"] for p in POSTS]
     updated = {"": "2026-10-17", "about/": "2026-10-17", "university-of-florida/": "2026-10-17", "resources/": "2026-10-17", "blog/": "2026-10-17", "blog/brain-bleeds-and-alzheimers-the-question-behind-my-research/": "2026-10-17"}
     with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
-        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n')
+        # Image entries help Google Images associate each real photo with the page and the name.
+        page_images = {"": ["/wp-content/uploads/2026/07/Headshot.jpg", "/images/rex-walrond-yosemite-granite-dome.jpg", "/images/rex-walrond-skiing.jpg"],
+                       "about/": ["/images/rex-walrond-portrait.jpg", "/wp-content/uploads/2025/03/rex-walrond-receives-cum-laude-honor-upon-graduation-768x1024.jpg"]}
+        for p in POSTS:
+            if p["image"]:
+                page_images[p["slug"]] = ["/images/" + p["image"][0]]
         for u in urls:
-            f.write(f"  <url><loc>{BASE}/{u}</loc><lastmod>{updated.get(u, '2026-10-15')}</lastmod></url>\n")
+            imgs = "".join(f"<image:image><image:loc>{BASE}{i}</image:loc></image:image>" for i in page_images.get(u, []))
+            f.write(f"  <url><loc>{BASE}/{u}</loc><lastmod>{updated.get(u, '2026-10-15')}</lastmod>{imgs}</url>\n")
         f.write("</urlset>\n")
     with open(os.path.join(OUT, "robots.txt"), "w") as f:
         f.write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n" if LIVE else "User-agent: *\nDisallow: /\n")

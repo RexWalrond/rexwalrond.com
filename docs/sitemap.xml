@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://rexwalrond.com/</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://rexwalrond.com/about/</loc><lastmod>2026-10-17</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://rexwalrond.com/</loc><lastmod>2026-10-17</lastmod><image:image><image:loc>https://rexwalrond.com/wp-content/uploads/2026/07/Headshot.jpg</image:loc></image:image><image:image><image:loc>https://rexwalrond.com/images/rex-walrond-yosemite-granite-dome.jpg</image:loc></image:image><image:image><image:loc>https://rexwalrond.com/images/rex-walrond-skiing.jpg</image:loc></image:image></url>
+  <url><loc>https://rexwalrond.com/about/</loc><lastmod>2026-10-17</lastmod><image:image><image:loc>https://rexwalrond.com/images/rex-walrond-portrait.jpg</image:loc></image:image><image:image><image:loc>https://rexwalrond.com/wp-content/uploads/2025/03/rex-walrond-receives-cum-laude-honor-upon-graduation-768x1024.jpg</image:loc></image:image></url>
   <url><loc>https://rexwalrond.com/university-of-florida/</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://rexwalrond.com/blog/</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://rexwalrond.com/portfolio/</loc><lastmod>2026-10-15</lastmod></url>
@@ -9,5 +9,5 @@
   <url><loc>https://rexwalrond.com/contact/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://rexwalrond.com/blog/brain-bleeds-and-alzheimers-the-question-behind-my-research/</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://rexwalrond.com/blog/onion-valley-to-whitney-portal/</loc><lastmod>2026-10-15</lastmod></url>
-  <url><loc>https://rexwalrond.com/blog/half-dome-and-clouds-rest-john-muir-trail/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://rexwalrond.com/blog/half-dome-and-clouds-rest-john-muir-trail/</loc><lastmod>2026-10-15</lastmod><image:image><image:loc>https://rexwalrond.com/images/rex-walrond-yosemite-granite-dome.jpg</image:loc></image:image></url>
 </urlset>
