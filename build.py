@@ -140,6 +140,33 @@ PEAKS = """<svg viewBox="0 0 1200 380" preserveAspectRatio="xMidYMax meet" role=
 
 POSTS = [
     {
+        "slug": "blog/brain-bleeds-and-alzheimers-the-question-behind-my-research/",
+        "title": "Brain Bleeds and Alzheimer's: The Question Behind My Research",
+        "date": "2026-10-17", "date_text": "October 2026", "tag": "Research",
+        "summary": "A plain-language look at the question I worked on at UF's McKnight Brain Institute: whether a subarachnoid hemorrhage can raise the risk of Alzheimer's disease years later.",
+        "image": None,
+        "body": """
+<p>From 2022 to 2023 I worked on a project at the University of Florida's McKnight Brain Institute that came down to one question: does a subarachnoid hemorrhage make a person more likely to develop Alzheimer's disease later in life? My part was the evidence. I read and analyzed more than 300 studies and helped organize them into a framework the team could use to decide what to test next. This post is the plain-language version of what that question involves. It's a summary for general readers, not medical advice.</p>
+<h2>What a subarachnoid hemorrhage is</h2>
+<p>The brain sits inside thin layers of tissue, and between two of those layers is a space filled with cerebrospinal fluid: the subarachnoid space. A subarachnoid hemorrhage is bleeding into that space. When it isn't caused by a head injury, the usual culprit is a ruptured aneurysm, a weak, ballooning spot in an artery. It's a medical emergency, often announced by a sudden, severe headache.</p>
+<h2>Why anyone connects it to Alzheimer's</h2>
+<p>Many people who survive a subarachnoid hemorrhage recover well on paper but still notice lasting problems with memory, attention or processing speed. Alzheimer's disease, meanwhile, is defined by two kinds of protein buildup in the brain, amyloid plaques and tau tangles, along with the loss of nerve cells. The research question is whether the injury from a bleed nudges the brain toward that Alzheimer's process, or whether it causes a different kind of damage that only looks similar from the outside.</p>
+<h2>The possible links researchers study</h2>
+<ul>
+<li><strong>Blood where it doesn't belong.</strong> As blood breaks down, it releases hemoglobin and iron, which can damage cells through oxidative stress.</li>
+<li><strong>Inflammation that lingers.</strong> The brain's immune response to a bleed doesn't always switch off neatly, and long-running inflammation is also part of the Alzheimer's story.</li>
+<li><strong>Clearance.</strong> The brain flushes out waste, including amyloid, partly through the movement of cerebrospinal fluid. Animal studies suggest blood in the subarachnoid space can slow that flow.</li>
+<li><strong>The blood vessels themselves.</strong> Vascular injury and reduced blood flow are risk factors for cognitive decline in their own right.</li>
+</ul>
+<p>Each of these is a hypothesis that researchers are testing, not a settled answer.</p>
+<h2>Why the evidence is hard to pin down</h2>
+<p>Going through hundreds of papers made one thing clear: the studies don't line up neatly. Some use animal models and some follow patients. Some measure memory with cognitive tests, some look at biomarkers and some count dementia diagnoses. Follow-up periods are often short compared with how slowly Alzheimer's develops. And the same factors that raise the risk of an aneurysm, such as high blood pressure and smoking, also raise the risk of cognitive decline, which makes cause and effect hard to separate.</p>
+<h2>What I took away</h2>
+<p>A single study rarely settles a question like this. What helps is laying many studies side by side and seeing where they agree, where they conflict and where nobody has looked yet. Those gaps are what point to the next experiment. It's also the habit I've carried out of the lab: organize the evidence before deciding what it means.</p>
+<p>More on my time at UF is on the <a href="{root}university-of-florida/">University of Florida page</a>, and a longer summary of my research experience is <a href="https://issuu.com/theodorewalrond/docs/the_journey_of_an_aspiring_scientist_from_classro">on Issuu</a>.</p>
+""",
+    },
+    {
         "slug": "blog/onion-valley-to-whitney-portal/",
         "title": "Onion Valley to Whitney Portal: 50 Miles of High Sierra",
         "date": "2025-08-15", "date_text": "August 2025", "tag": "Backpacking",
@@ -468,7 +495,7 @@ def build():
 
     # ---------------- robots, sitemap, CNAME
     urls = ["", "about/", "university-of-florida/", "blog/", "portfolio/", "resources/", "contact/"] + [p["slug"] for p in POSTS]
-    updated = {"": "2026-10-17", "about/": "2026-10-17", "university-of-florida/": "2026-10-17", "resources/": "2026-10-17"}
+    updated = {"": "2026-10-17", "about/": "2026-10-17", "university-of-florida/": "2026-10-17", "resources/": "2026-10-17", "blog/": "2026-10-17", "blog/brain-bleeds-and-alzheimers-the-question-behind-my-research/": "2026-10-17"}
     with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
         for u in urls:
