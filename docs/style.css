@@ -131,3 +131,8 @@ figcaption{font-size:14px;color:var(--ink-2);margin-top:10px}
   .nav{gap:14px}
 }
 .prose figure img{max-width:min(100%,520px)}
+.elsewhere{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.elsewhere a{display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.elsewhere a:hover{border-color:var(--glacier)}
+.elsewhere b{display:block;font-family:Fraunces,serif;font-size:17px;font-weight:600}
+.elsewhere span{font-size:13.5px;color:var(--ink-2)}

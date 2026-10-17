@@ -17,6 +17,30 @@ OUT = os.path.join(HERE, "docs")
 NAV = [("Home", ""), ("About", "about/"), ("Blog", "blog/"), ("Portfolio", "portfolio/"),
        ("Resources", "resources/"), ("Contact", "contact/")]
 
+# Rex's other profiles. The old WordPress site linked to these; keeping the links preserves the
+# support they give the profiles that hold page-1 spots for his name.
+PROFILES = [
+    ("LinkedIn", "Work history and education", "https://www.linkedin.com/in/theodore-rex-walrond/"),
+    ("theodorewalrond.com", "My site under my full name, Theodore Walrond", "https://theodorewalrond.com/"),
+    ("Field notes", "Trip reports, gear and music", "https://rexwalrond.github.io/RexWalrond/"),
+    ("Neuroscience &amp; community", "Research and Parkinson's support work", "https://rexwalrond.weebly.com/"),
+    ("Issuu", "My biography, resume and trip journals", "https://issuu.com/rexwalrond"),
+    ("Issuu: Theodore Walrond", "Research summary, dive notes and the Rainier climb", "https://issuu.com/theodorewalrond"),
+    ("Instagram", "@rexwalrond", "https://www.instagram.com/rexwalrond/"),
+    ("F6S", "Rex Walrond's F6S profile", "https://www.f6s.com/rex-walrond"),
+    ("Creator Spring", "Rex Walrond's Spring page", "https://rexwalrond.creator-spring.com/"),
+    ("Jimdo", "Theodore Walrond's Jimdo site", "https://theodore-walrond.jimdosite.com/"),
+    ("about.me", "Rex Walrond on about.me", "https://about.me/rexwalrond"),
+    ("Muck Rack", "Rex Walrond on Muck Rack", "https://muckrack.com/rex-walrond"),
+    ("Crunchbase", "Rex Walrond on Crunchbase", "https://www.crunchbase.com/person/rex-walrond"),
+    ("YouTube", "Rex Walrond's channel", "https://www.youtube.com/@RexWalrond"),
+]
+
+
+def profile_links(items):
+    return "".join(f'<a href="{u}" rel="me"><b>{t}</b><span>{d}</span></a>' for t, d, u in items)
+
+
 PERSON = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -26,11 +50,7 @@ PERSON = {
     "image": BASE + "/images/rex-walrond-headshot.jpg",
     "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of Florida"},
     "knowsAbout": ["Behavioral neuroscience", "Cognitive neuroscience", "Healthcare", "Finance", "Scuba diving", "Mountaineering"],
-    "sameAs": [
-        "https://www.linkedin.com/in/theodore-rex-walrond/",
-        "https://rexwalrond.github.io/RexWalrond/",
-        "https://rexwalrond.weebly.com/",
-    ],
+    "sameAs": [u for _, _, u in PROFILES],
 }
 
 
@@ -67,7 +87,7 @@ def page(path, title, description, body, current=None, extra_head=""):
 <main>
 {body.replace("{root}", root)}
 </main>
-<footer class="site-foot"><div class="wrap"><span>&copy; 2026 Rex Walrond</span><span><a href="https://www.linkedin.com/in/theodore-rex-walrond/">LinkedIn</a> &middot; <a href="https://rexwalrond.github.io/RexWalrond/">Field notes</a> &middot; <a href="https://rexwalrond.weebly.com/">Research &amp; community</a></span></div></footer>
+<footer class="site-foot"><div class="wrap"><span>&copy; 2026 Rex Walrond</span><span><a href="https://www.linkedin.com/in/theodore-rex-walrond/">LinkedIn</a> &middot; <a href="https://rexwalrond.github.io/RexWalrond/">Field notes</a> &middot; <a href="https://rexwalrond.weebly.com/">Research &amp; community</a> &middot; <a href="https://theodorewalrond.com/">theodorewalrond.com</a></span></div></footer>
 </body>
 </html>
 """
@@ -246,6 +266,13 @@ def build():
 </section>
 
 <section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="mono">Elsewhere online</div><h2>Find Rex Walrond elsewhere</h2></div><p>Profiles, publications and my second site, theodorewalrond.com.</p></div>
+    <div class="elsewhere">{profile_links(PROFILES)}</div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
   <div class="wrap"><div class="close"><h2>Planning a trip, or just want to say hello?</h2><div class="cta" style="margin-top:0"><a class="btn btn-solid" href="{{root}}contact/">Get in touch</a><a class="btn btn-ghost" href="https://www.linkedin.com/in/theodore-rex-walrond/">LinkedIn</a></div></div></div>
 </section>
 """
@@ -338,12 +365,7 @@ def build():
         ("Theodore Rex Walrond: How Cognitive Neuroscience Explains Learning and Memory Formation", "MediTech Today", "2025", "https://meditechtoday.com/cognitive-neuroscience-learning-memory-formation/"),
     ]
     art_html = "".join(f'<a href="{u}" rel="noopener"><b>{t}</b><span>{pub} &#183; {y}</span></a>' for t, pub, y, u in articles)
-    profiles = [
-        ("LinkedIn", "Professional background", "https://www.linkedin.com/in/theodore-rex-walrond/"),
-        ("Personal site & field notes", "Trips, gear, music and data", "https://rexwalrond.github.io/RexWalrond/"),
-        ("Neuroscience & community", "Research and Parkinson's support work", "https://rexwalrond.weebly.com/"),
-    ]
-    prof_html = "".join(f'<a href="{u}"><b>{t}</b><span>{d}</span></a>' for t, d, u in profiles)
+    prof_html = profile_links(PROFILES)
     resources = f"""
 <div class="wrap narrow">
   <div class="page-head"><div class="mono">Resources</div><h1>Articles &amp; links</h1><p>Articles featuring Theodore Rex Walrond, and where to find him elsewhere online.</p></div>
