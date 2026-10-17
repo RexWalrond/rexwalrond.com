@@ -177,6 +177,34 @@ POSTS = [
 ]
 
 
+# Old WordPress URLs -> closest new page, so links pointing at the retired posts still count.
+REDIRECTS = {"rex-walrond-note-dame-m-s-in-finance-candidate/": "/", "privacy-policy/": "/contact/", "category/blog/": "/blog/"}
+for slug in ["unlock-your-skiing-potential-advanced-techniques", "exploring-the-thrills-of-backcountry-skiing-a-guide-to-adventure-and-freedom",
+             "scaling-peaks-the-thrill-and-challenge-of-mountain-climbing", "mastering-advanced-skiing-techniques",
+             "start-backcountry-skiing-basics", "elevating-your-skiing-skills-expert-techniques-for-advanced-skiers"]:
+    REDIRECTS[slug + "/"] = "/blog/"
+for slug in ["the-journey-of-an-aspiring-scientist-from-classroom-to-research-lab", "the-journey-of-an-aspiring-scientist-from-classroom-to-research-lab-2",
+             "from-classroom-to-research-lab-a-guide-to-becoming-a-scientist", "how-academic-research-prepares-you-for-real-world-challenges",
+             "inside-romark-laboratories-partnering-with-industry-leaders-to-shape-the-future-of-pharmaceuticals",
+             "scientific-discovery-from-classroom-to-cutting-edge-research"]:
+    REDIRECTS[slug + "/"] = "/portfolio/"
+for slug in ["conquer-stem-challenges-strategies-for-academic-success", "navigating-the-complex-world-of-stem-education",
+             "personal-journey-from-high-school-student-to-scuba-dive-master"]:
+    REDIRECTS[slug + "/"] = "/about/"
+
+
+def redirect(path, target):
+    dest = os.path.join(OUT, path, "index.html")
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    with open(dest, "w", encoding="utf-8") as f:
+        f.write(f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Moved</title>
+<link rel="canonical" href="{BASE}{target}">
+<meta http-equiv="refresh" content="0; url={target}">
+</head><body><p>This page has moved: <a href="{target}">{BASE}{target}</a></p></body></html>
+""")
+
+
 def post_card(p, root):
     img = (f'<img src="{root}images/{p["image"][0]}" alt="{p["image"][1]}" loading="lazy">'
            if p["image"] else '<div class="thumb"></div>')
@@ -391,6 +419,10 @@ def build():
     # ---------------- 404 (GitHub Pages serves /404.html; use absolute links)
     page("404.html", "Page not found | Rex Walrond", "This page doesn't exist.",
          '<div class="wrap narrow"><div class="page-head"><div class="mono">404</div><h1>Page not found</h1><p>That page has moved or no longer exists.</p></div><div class="cta"><a class="btn btn-solid" href="/">Go to the home page</a><a class="btn btn-ghost" href="/blog/">Read the blog</a></div></div><div style="height:120px"></div>')
+
+    # ---------------- Redirects for retired WordPress URLs
+    for old, new in REDIRECTS.items():
+        redirect(old, new)
 
     # ---------------- robots, sitemap, CNAME
     urls = ["", "about/", "blog/", "portfolio/", "resources/", "contact/"] + [p["slug"] for p in POSTS]
