@@ -37,6 +37,16 @@ PROFILES = [
 ]
 
 
+# Issuu publications, linked one by one so each document gets a direct link.
+PUBLICATIONS = [
+    ('Rex Walrond Biography', 'Questions and answers: background, research and the outdoors', 'https://issuu.com/rexwalrond/docs/rex_walrond_biography'),
+    ('Rex Walrond Resume', 'Research, service, education and certifications', 'https://issuu.com/rexwalrond/docs/the_journey_of_an_aspiring_scientist_navigating_t'),
+    ('Tracking COVID-19 Drug Candidates at Romark Laboratories', 'Project summary, summer 2021', 'https://issuu.com/rexwalrond/docs/the_journey_of_an_aspiring_scientist_from_classro'),
+    ('Photo Journal: Yosemite and the High Country', 'Photos from the John Muir Trail and beyond', 'https://issuu.com/rexwalrond/docs/the_scientist_s_journey_from_dreams_in_the_classr'),
+    ('Ski Log: Seven Mountains From Alta to Telluride', 'Notes from Utah, Colorado and Idaho', 'https://issuu.com/rexwalrond/docs/top_ski_destinations_for_expert_skiers_from_tellu'),
+]
+
+
 def profile_links(items):
     return "".join(f'<a href="{u}" rel="me"><b>{t}</b><span>{d}</span></a>' for t, d, u in items)
 
@@ -404,6 +414,8 @@ def build():
   <div class="page-head"><div class="mono">Resources</div><h1>Articles &amp; links</h1><p>Articles featuring Theodore Rex Walrond, and where to find him elsewhere online.</p></div>
   <h2 style="font-size:28px;margin:12px 0 8px">Featured articles</h2>
   <div class="list">{art_html}</div>
+  <h2 style="font-size:28px;margin:44px 0 8px">Publications on Issuu</h2>
+  <div class="list">{profile_links(PUBLICATIONS)}</div>
   <h2 style="font-size:28px;margin:44px 0 8px">Profiles</h2>
   <div class="list">{prof_html}</div>
 </div>
